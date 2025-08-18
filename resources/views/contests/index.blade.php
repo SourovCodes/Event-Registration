@@ -1,4 +1,4 @@
-<x-web-layout>
+i<x-web-layout>
     <section class="dark:bg-gray-900">
         <div class="container mx-auto mt-5 space-y-5 px-2">
             <!-- Card Blog -->

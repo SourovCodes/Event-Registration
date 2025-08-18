@@ -1,5 +1,5 @@
 <x-web-layout>
-    {{-- <div class="py-12 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div class="py-12 bg-gray-50 dark:bg-gray-900 min-h-screen">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto">
                 <!-- Header with gradient background -->
@@ -28,9 +28,9 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
-    <div class="py-12 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    {{-- <div class="py-12 bg-gray-50 dark:bg-gray-900 min-h-screen">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-4xl mx-auto">
                 <!-- Deadline Over Notice -->
@@ -50,5 +50,5 @@
                
             </div>
         </div>
-    </div>
+    </div> --}}
 </x-web-layout>
