@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\GoogleLoginController;
 use Laravel\Socialite\Facades\Socialite;
 
-Route::get('/', [PageController::class, 'incentive'])->name('home');
+Route::get('/', [PageController::class, 'home'])->name('home');
 //Route::get('/temp',[PageController::class, 'temp'] )->name('temp');
 Route::get('/update-payment', [PageController::class, 'updatePayment'])->middleware(['auth', 'verified'])->name('update-payment');
 
