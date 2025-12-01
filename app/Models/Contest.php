@@ -48,7 +48,8 @@ class Contest extends Model implements HasMedia
         'extra',
         'manual_payment_methods',
         'registration_limit',
-        'public'
+        'public',
+        'credentials_csv_path'
     ];
 
     protected function casts(): array
@@ -76,6 +77,10 @@ class Contest extends Model implements HasMedia
             ->useFallbackUrl(asset('images/no-image.png'))
             ->useFallbackPath(public_path('/images/no-image.png'));
 
+        $this
+            ->addMediaCollection('credentials-csv')
+            ->acceptsMimeTypes(['text/csv', 'text/plain', 'application/csv'])
+            ->singleFile();
     }
     public function registerMediaConversions(Media|null $media = null): void
     {

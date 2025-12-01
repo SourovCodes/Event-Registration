@@ -77,6 +77,16 @@ class ContestResource extends Resource
                     ->imageEditor()
                     ->visibility('public')
                     ->required(),
+                
+                SpatieMediaLibraryFileUpload::make('Credentials CSV')
+                    ->disk('local')
+                    ->collection('credentials-csv')
+                    ->acceptedFileTypes(['text/csv', 'text/plain', 'application/csv'])
+                    ->maxSize(5120)
+                    ->downloadable()
+                    ->helperText('Upload a CSV file with student credentials (Name, Clan_1, Clan_2, Clan_3, Room No, PC No, Username, Password)')
+                    ->visibility('private'),
+                
                 TextInput::make('semester')
                     ->required(),
 

@@ -57,18 +57,35 @@ class RegistrationController extends Controller
 
     private function findCredentialsByStudentId($studentId, $contestId)
     {
-        // Map contest IDs to their CSV files in storage
-        $csvFiles = [
-            6 => storage_path('app/contest_6_users.csv'),
-            2 => storage_path('app/contest_2_users.csv'),
-            // Add more mappings as needed
-        ];
-
-        if (!isset($csvFiles[$contestId]) || !file_exists($csvFiles[$contestId])) {
+        // Get the contest and check for uploaded CSV
+        $contest = Contest::find($contestId);
+        
+        if (!$contest) {
             return null;
         }
-
-        $csvFile = $csvFiles[$contestId];
+        
+        // Try to get CSV from media library first
+        $csvMedia = $contest->getFirstMedia('credentials-csv');
+        
+        if ($csvMedia) {
+            $csvFile = $csvMedia->getPath();
+        } else {
+            // Fallback to hardcoded paths for backward compatibility
+            $csvFiles = [
+                6 => storage_path('app/contest_6_users.csv'),
+                2 => storage_path('app/contest_2_users.csv'),
+            ];
+            
+            if (!isset($csvFiles[$contestId]) || !file_exists($csvFiles[$contestId])) {
+                return null;
+            }
+            
+            $csvFile = $csvFiles[$contestId];
+        }
+        
+        if (!file_exists($csvFile)) {
+            return null;
+        }
         
         if (($handle = fopen($csvFile, 'r')) !== false) {
             $headers = fgetcsv($handle);
