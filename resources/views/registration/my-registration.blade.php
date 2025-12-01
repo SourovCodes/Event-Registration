@@ -88,18 +88,6 @@
                     </div>
                 </div>
 
-                <!-- Debug Info (Remove after testing) -->
-                <div class="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg text-xs">
-                    <strong>Debug Info:</strong><br>
-                    Contest ID: {{ $registration->contest_id }}<br>
-                    Student ID: {{ $registration->student_id }}<br>
-                    Credentials Found: {{ $credentials ? 'Yes' : 'No' }}<br>
-                    @if($credentials)
-                        Username: {{ $credentials['username'] ?? 'N/A' }}<br>
-                        Password: {{ $credentials['password'] ?? 'N/A' }}
-                    @endif
-                </div>
-
                 @if($credentials)
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-3 mb-4">
