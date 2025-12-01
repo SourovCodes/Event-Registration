@@ -72,15 +72,23 @@ class RegistrationController extends Controller
         if (($handle = fopen($csvFile, 'r')) !== false) {
             $headers = fgetcsv($handle);
             
+            // Normalize student ID for comparison
+            $normalizedStudentId = trim($studentId);
+            
             while (($data = fgetcsv($handle)) !== false) {
+                if (count($data) < count($headers)) {
+                    continue; // Skip malformed rows
+                }
+                
                 $row = array_combine($headers, $data);
                 
-                // Check if this row matches the student ID (check all clan columns)
-                if (isset($row['Clan_1']) && $row['Clan_1'] === $studentId) {
+                // Match student ID with Clan_1 column
+                if (isset($row['Clan_1']) && trim($row['Clan_1']) === $normalizedStudentId) {
                     fclose($handle);
                     return [
-                        'username' => $row['Username'] ?? null,
-                        'password' => $row['Password'] ?? null,
+                        'username' => isset($row['Username']) ? trim($row['Username']) : null,
+                        'password' => isset($row['Password']) ? trim($row['Password']) : null,
+                        'name' => isset($row['Name']) ? trim($row['Name']) : null,
                     ];
                 }
             }

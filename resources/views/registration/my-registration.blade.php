@@ -88,11 +88,23 @@
                     </div>
                 </div>
 
+                <!-- Debug Info (Remove after testing) -->
+                <div class="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg text-xs">
+                    <strong>Debug Info:</strong><br>
+                    Contest ID: {{ $registration->contest_id }}<br>
+                    Student ID: {{ $registration->student_id }}<br>
+                    Credentials Found: {{ $credentials ? 'Yes' : 'No' }}<br>
+                    @if($credentials)
+                        Username: {{ $credentials['username'] ?? 'N/A' }}<br>
+                        Password: {{ $credentials['password'] ?? 'N/A' }}
+                    @endif
+                </div>
+
                 @if($credentials)
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-3 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1721 9z" />
                         </svg>
                         <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Contest Credentials</h4>
                     </div>
