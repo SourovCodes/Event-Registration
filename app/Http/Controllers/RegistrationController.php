@@ -57,9 +57,10 @@ class RegistrationController extends Controller
 
     private function findCredentialsByStudentId($studentId, $contestId)
     {
-        // Map contest IDs to their CSV files
+        // Map contest IDs to their CSV files in storage
         $csvFiles = [
-            2 => public_path('contest_2_users.csv'),
+            6 => storage_path('app/contest_6_users.csv'),
+            2 => storage_path('app/contest_2_users.csv'),
             // Add more mappings as needed
         ];
 
