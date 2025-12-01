@@ -88,6 +88,67 @@
                     </div>
                 </div>
 
+                @if($credentials)
+                <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                        </svg>
+                        <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Contest Credentials</h4>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-xl p-5 border border-green-100 dark:border-green-800/30">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
+                            <div class="flex flex-col">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">Username</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-mono font-semibold text-lg text-gray-900 dark:text-white">{{ $credentials['username'] }}</span>
+                                    <button onclick="navigator.clipboard.writeText('{{ $credentials['username'] }}')" 
+                                            class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                                            title="Copy username">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-sm text-gray-500 dark:text-gray-400">Password</span>
+                                <div class="flex items-center gap-2">
+                                    <span class="font-mono font-semibold text-lg text-gray-900 dark:text-white">{{ $credentials['password'] }}</span>
+                                    <button onclick="navigator.clipboard.writeText('{{ $credentials['password'] }}')" 
+                                            class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                                            title="Copy password">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-center">
+                            <a href="https://www.judgenot0.com/contests/2" target="_blank" 
+                               class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                                Access Contest Platform
+                            </a>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-green-200 dark:border-green-800/30">
+                            <p class="text-xs text-gray-600 dark:text-gray-400 flex items-start gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>Use these credentials to access <strong>DIU Take-off Fall 2025 Practice Contest</strong>. Keep them secure and do not share with others.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
                 <div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-3 mb-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

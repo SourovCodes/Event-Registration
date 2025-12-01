@@ -48,6 +48,46 @@ class RegistrationController extends Controller
         if (!$registration) {
             return redirect(route('contests.registration.form', $contest));
         }
-        return view('registration.my-registration', compact('registration'));
+
+        // Find credentials from CSV based on student ID
+        $credentials = $this->findCredentialsByStudentId($registration->student_id, $contest->id);
+
+        return view('registration.my-registration', compact('registration', 'credentials'));
+    }
+
+    private function findCredentialsByStudentId($studentId, $contestId)
+    {
+        // Map contest IDs to their CSV files
+        $csvFiles = [
+            2 => public_path('contest_2_users.csv'),
+            // Add more mappings as needed
+        ];
+
+        if (!isset($csvFiles[$contestId]) || !file_exists($csvFiles[$contestId])) {
+            return null;
+        }
+
+        $csvFile = $csvFiles[$contestId];
+        
+        if (($handle = fopen($csvFile, 'r')) !== false) {
+            $headers = fgetcsv($handle);
+            
+            while (($data = fgetcsv($handle)) !== false) {
+                $row = array_combine($headers, $data);
+                
+                // Check if this row matches the student ID (check all clan columns)
+                if (isset($row['Clan_1']) && $row['Clan_1'] === $studentId) {
+                    fclose($handle);
+                    return [
+                        'username' => $row['Username'] ?? null,
+                        'password' => $row['Password'] ?? null,
+                    ];
+                }
+            }
+            
+            fclose($handle);
+        }
+        
+        return null;
     }
 }
