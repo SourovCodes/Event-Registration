@@ -16,8 +16,7 @@ class RegistrationsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            BaseWidget\Stat::make('Total Registration', Registration::where('contest_id', $this->record->id)
-                ->whereNot('status', RegistrationStatuses::UNPAID)->count()),
+            BaseWidget\Stat::make('Total Registration', Registration::where('contest_id', $this->record->id)->count()),
             BaseWidget\Stat::make('Pending Registration', Registration::where('contest_id', $this->record->id)
                 ->where('status', RegistrationStatuses::PENDING)->count()),
             BaseWidget\Stat::make('Paid Registration', Registration::where('contest_id', $this->record->id)
